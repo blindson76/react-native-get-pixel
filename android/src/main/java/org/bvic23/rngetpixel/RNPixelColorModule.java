@@ -2,6 +2,7 @@ package org.bvic23.rngetpixel;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -50,7 +51,7 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void getPixelRGBAPolarOfImage(final String imageName, final double angle, final double radius, final Callback callback) {
         try {
-            final Bitmap image = loadImage(imageName);
+            final Bitmap image = BitmapFactory.decodeFile(imageName);
             final double width = image.getWidth();
             final double height = image.getHeight();
             final double rotatedAngle = angle + rotation;
