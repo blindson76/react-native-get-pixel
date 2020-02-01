@@ -51,7 +51,7 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void getPixelRGBAPolarOfImage(final String imageName, final double angle, final double radius, final Callback callback) {
         try {
-            final Bitmap image = BitmapFactory.decodeFile(imageName);
+            final Bitmap image = loadImage(imageName);
             final double width = image.getWidth();
             final double height = image.getHeight();
             final double rotatedAngle = angle + rotation;
@@ -127,8 +127,6 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
     }
 
     private Bitmap loadImage(final String imageName) throws IOException {
-        final InputStream inputStream = context.getAssets().open("drawable/" + imageName + ".png");
-        final Drawable drawable = Drawable.createFromStream(inputStream, null);
-        return ((BitmapDrawable) drawable).getBitmap();
+        return BitmapFactory.decodeFile(imageName);
     }
 }
